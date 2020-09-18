@@ -1,10 +1,16 @@
 <template>
-  <div></div>
+  <div><button v-on:click="create">Reset</button></div>
 </template>
 
 <script>
-export default {
 
+import { myStore } from "../modules/store"
+export default {
+  data() {
+    return {
+      create: myStore.createSudokuMatrix
+    }
+  }
 }
 </script>
 

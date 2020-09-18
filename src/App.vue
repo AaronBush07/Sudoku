@@ -10,6 +10,7 @@ import Header from './components/Header.vue'
 import GameBoard from './components/GameBoard.vue'
 import Controller from './components/Controller.vue'
 import Footer from './components/Footer.vue'
+//import { ref, onErrorCaptured } from "vue";
 
 export default {
   name: 'App',
