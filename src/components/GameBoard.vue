@@ -2,35 +2,51 @@
   <div>
       <table class="sudokuTable">
           <tbody>
-            <tr v-for="index in 9" :key="index">
-                <td v-for="cell in 9" :key="cell"><input type="text" class="Cell" pattern="[1-9]" /></td>
+            <tr v-for="(matrixRow,row) in sudokuMatrix" :key="row">
+                <td v-for="(cell,col) in matrixRow" :key="col">
+                  <input v-bind:value="sudokuMatrix[row][col].Num" v-on:input="updateSudokuMatrix($event.target.value, row, col)" type="text" class="Cell" pattern="[1-9]" />
+                </td>
             </tr>
           </tbody>
       </table>
-      <ul >
-            <li v-for="level in myStore().level.value" :key="level">{{level}}</li>
-          </ul>
   </div>
 </template>
 
 <script>
-import myStore from "../modules/store"
+import {myStore} from "../modules/store"
+
+//let sudokuMatrix = myStore.state.sudokuMatrix
 
 export default {
   name: 'GameBoard',
   data() {
     return {
-      myStore
+      //sudokuMatrix: myStore.state.sudokuMatrix
     };
   },
   beforeMount() {
-    //let i = 80;
+    myStore.createSudokuMatrix();
+  },
+  afterMount() {
+    console.log(this.sudokuMatrix)
+  },
+  computed: {
+    sudokuMatrix: {
+      get () {
+        return myStore.state.sudokuMatrix
+      }
+    }
   },
   created() {
 
   },
+  // setup(props, context){
+  //   //context.sudokuMatrix = myStore.state.sudokuMatrix
+  // },
   methods: {
-    
+    updateSudokuMatrix(value, row, col) {
+      myStore.updateSudokuMatrix(value, row, col)
+    } 
   }
 }
 </script>
