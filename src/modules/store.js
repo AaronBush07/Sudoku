@@ -10,11 +10,9 @@ function createSudokuMatrix() {
   /**Create blank 9x9 Sudoku board */
   console.log("Create new matrix");
   state.sudokuMatrix = [];
-  console.log(state.sudokuMatrix);
   for (let k = 0; k < 9; k++) {
     state.sudokuMatrix.push(Array.from({length:9}, (_,i) => i+1).map(j=>{return {Num:j}}) )
   }
-  console.log(state.sudokuMatrix);
   state.originalMatrix = state.sudokuMatrix;
 }
 

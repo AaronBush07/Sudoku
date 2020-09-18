@@ -2,9 +2,9 @@
   <div>
       <table class="sudokuTable">
           <tbody>
-            <tr v-for="(matrixRow,row) in sudokuMatrix" :key="row">
-                <td v-for="(cell,col) in matrixRow" :key="col">
-                  <input v-bind:value="sudokuMatrix[row][col].Num" v-on:input="updateSudokuMatrix($event.target.value, row, col)" type="text" class="Cell" pattern="[1-9]" />
+            <tr v-for="row in 9" :key="row-1">
+                <td v-for="col in 9" :key="col-1">
+                  <input v-bind:value="sudokuMatrix[row-1][col-1].Num" v-on:input="updateSudokuMatrix($event.target.value, row-1, col-1)" type="text" class="Cell" pattern="[1-9]" />
                 </td>
             </tr>
           </tbody>
@@ -13,15 +13,13 @@
 </template>
 
 <script>
-import {myStore} from "../modules/store"
-
-//let sudokuMatrix = myStore.state.sudokuMatrix
+import { myStore } from "../modules/store"
 
 export default {
   name: 'GameBoard',
   data() {
     return {
-      //sudokuMatrix: myStore.state.sudokuMatrix
+      
     };
   },
   beforeMount() {
@@ -40,9 +38,6 @@ export default {
   created() {
 
   },
-  // setup(props, context){
-  //   //context.sudokuMatrix = myStore.state.sudokuMatrix
-  // },
   methods: {
     updateSudokuMatrix(value, row, col) {
       myStore.updateSudokuMatrix(value, row, col)
