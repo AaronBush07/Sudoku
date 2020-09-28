@@ -1,14 +1,14 @@
 <template>
-  <div><button v-on:click="create">Reset</button></div>
+  <div><button v-on:click="createSudoku">Reset</button></div>
 </template>
 
 <script>
 
 import { myStore } from "../modules/store"
 export default {
-  data() {
+  data() { 
     return {
-      create: myStore.createSudokuMatrix
+      createSudoku: myStore.createSudokuMatrix
     }
   }
 }

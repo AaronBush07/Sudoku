@@ -14,34 +14,17 @@
 
 <script>
 import { myStore } from "../modules/store"
+//import { computed } from "vue"
 
 export default {
   name: 'GameBoard',
-  data() {
-    return {
-      
-    };
-  },
-  beforeMount() {
-    myStore.createSudokuMatrix();
-  },
   afterMount() {
-    console.log(this.sudokuMatrix)
+    //console.log(this.sudokuMatrix)
   },
-  computed: {
-    sudokuMatrix: {
-      get () {
-        return myStore.state.sudokuMatrix
-      }
-    }
-  },
-  created() {
-
-  },
-  methods: {
-    updateSudokuMatrix(value, row, col) {
-      myStore.updateSudokuMatrix(value, row, col)
-    } 
+  setup() {
+    const sudoku = myStore
+    sudoku.createSudokuMatrix()
+    return sudoku
   }
 }
 </script>
