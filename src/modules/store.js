@@ -1,4 +1,3 @@
-
 import { reactive, readonly, toRefs } from "vue";
 import { matrix } from "./matrix"
 
@@ -15,7 +14,7 @@ function createSudokuMatrix() {
   state.sudokuMatrix = [];
 
   for (let k = 0; k < 9; k++) {
-    state.sudokuMatrix.push(Array.from({length:9}, (_,i) => i+1).map(j=>{return {Num:j}}) )
+    state.sudokuMatrix.push(Array.from({length:9}, (_,i) => { return {Num:i+1}}));
   }
   
   state.originalMatrix = state.sudokuMatrix;
@@ -24,7 +23,33 @@ function createSudokuMatrix() {
 }
 
 function validateSudoku() {
+  console.log(peerSolve(state.sudokuMatrix, 0,0));
   return false;
+}
+
+/** Every square has 20 peers. Validate for given row-col or return false. 
+ * A row must validate for all numbers in its row. 
+ * A col must validate for all numbers in its col. 
+ * Last, a square must validate for all numbers in it's square.
+*/
+function peerSolve(m, row, col) {
+
+  let mRow = m[row];
+  let mCol = []
+  mCol.push(Array.from({length:9}, (_,i) => m[i][col]));
+  let mSquare = [];
+  for(let i = 0; i<3; i++)
+  {
+    for(let k = 0; k<3; k++)
+    {
+      let sRow = (Math.floor(row/3)*3)+i;
+      let sCol = (Math.floor(col/3)*3)+k;
+      mSquare.push(m[sRow][sCol]);
+    }
+  }
+
+  return (matrix.validateDigits(mRow) && matrix.validateDigits(mCol) && matrix.validateDigits(mSquare));
+
 }
 
 

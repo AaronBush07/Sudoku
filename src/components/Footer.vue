@@ -1,6 +1,6 @@
 <template>
   <div>
-      <footer class="Footer"><p>Work in Progress. Created in Vue.js by Aaron Bush.</p> </footer>
+      <footer class="Footer"><p>Work in Progress. Created in Vue.js 3.0 by Aaron Bush.</p> </footer>
   </div>
 </template>
 

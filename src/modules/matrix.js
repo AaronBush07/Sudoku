@@ -48,10 +48,24 @@ function reflectHorizontal(matrix)
     return matrix;
 }
 
+function validateDigits(array)
+{
+    let digits = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
+    for (let d in digits)
+    {
+        if (array.find(element => element.Num === d) === false)
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
 
 export const matrix = {
     rotateLeft,
     rotateRight, 
     reflectVertical,
-    reflectHorizontal
+    reflectHorizontal,
+    validateDigits
 }
