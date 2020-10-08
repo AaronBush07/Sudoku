@@ -3,7 +3,7 @@ import { matrix } from "./matrix"
 
 const state = reactive({
   sudokuMatrix: [],
-  originalMatrix: [],
+  solutionMatrix: [],
   level: ["EASY", "MEDIUM", "SPICY"]
 });
 
@@ -13,24 +13,23 @@ function createSudokuMatrix() {
   console.log("Create new matrix");
   state.sudokuMatrix = [];
 
-  for (let k = 0; k < 9; k++) {
-    state.sudokuMatrix.push(Array.from({length:9}, (_,i) => { return {Num:i+1}}));
-  }
   
-  state.originalMatrix = state.sudokuMatrix;
+  state.sudokuMatrix = matrix.createBlankMatrix();
+
+  state.solutionMatrix = state.sudokuMatrix;
   state.sudokuMatrix = matrix.reflectHorizontal(state.sudokuMatrix);
   validateSudoku()
 }
 
 function validateSudoku() {
-  console.log(peerSolve(state.sudokuMatrix, 0,0));
+  console.log(peerSolve(state.sudokuMatrix, 0,0) ? true : false);
   return false;
 }
 
 /** Every square has 20 peers. Validate for given row-col or return false. 
  * A row must validate for all numbers in its row. 
  * A col must validate for all numbers in its col. 
- * Last, a square must validate for all numbers in it's square.
+ * Last, a square must validate for all numbers in it's 3x3 square.
 */
 function peerSolve(m, row, col) {
 
@@ -54,9 +53,9 @@ function peerSolve(m, row, col) {
 
 
 function updateSudokuMatrix(value, row, col) {
-  state.sudokuMatrix[row][col] = {Num:value}
+  state.sudokuMatrix[row][col] = value;
   console.log("updated")
-  console.log(state.sudokuMatrix[row][col].Num)
+  console.log(state.sudokuMatrix[row][col])
   console.log(state.sudokuMatrix)
 }
 

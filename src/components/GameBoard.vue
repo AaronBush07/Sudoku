@@ -4,7 +4,7 @@
           <tbody>
             <tr v-for="(row,rowIndex) in sudokuMatrix" :key="row">
                 <td v-for="(col,colIndex) in row" :key="col">
-                  <input v-bind:value="col.Num" v-on:input="updateSudokuMatrix($event.target.value, rowIndex, colIndex)" type="text" class="Cell" pattern="[1-9]" />
+                  <input v-bind:value="col" v-on:input="updateSudokuMatrix($event.target.value, rowIndex, colIndex)" type="text" class="Cell" pattern="[1-9]" />
                 </td>
             </tr>
           </tbody>
