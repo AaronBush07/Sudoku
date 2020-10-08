@@ -16,8 +16,16 @@ function createSudokuMatrix() {
   
   state.sudokuMatrix = matrix.createBlankMatrix();
 
+  let m = matrix.parseGrid(state.sudokuMatrix);
+  console.log(m);
+  m = matrix.assign(m, "A1","4");
+  console.log(m);
+  state.sudokuMatrix = matrix.squaresToGrid(m);
+
+
   state.solutionMatrix = state.sudokuMatrix;
-  state.sudokuMatrix = matrix.reflectHorizontal(state.sudokuMatrix);
+  //state.sudokuMatrix = matrix.reflectHorizontal(state.sudokuMatrix);
+
   validateSudoku()
 }
 

@@ -48,7 +48,7 @@ function getPeers() {
 
 const peers = getPeers(); 
 
-export const sudoku = {
+export default {
     units, 
     unitList,
     rows, 
